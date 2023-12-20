@@ -1,40 +1,23 @@
-import 'package:ddgood/drawer/calendar.dart';
-import 'package:ddgood/drawer/wordcloud.dart';
 import 'package:flutter/material.dart';
 
-import 'talk.dart';
+import '../main.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({
+class WordCloudPage extends StatefulWidget {
+  const WordCloudPage({
     super.key,
   });
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<WordCloudPage> createState() => _WordCloudPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _WordCloudPageState extends State<WordCloudPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text('WordCloud Page'),
+        automaticallyImplyLeading: false,
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
@@ -45,9 +28,6 @@ class _MyHomePageState extends State<MyHomePage> {
             );
           },
         ),
-        backgroundColor: const Color.fromRGBO(217, 217, 217, 1),
-        title: const Text('서비스명'),
-        automaticallyImplyLeading: false,
       ),
       drawer: Drawer(
         width: 243,
@@ -136,22 +116,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 thickness: 0.4,
                 color: Color.fromRGBO(149, 149, 149, 1),
               ),
-              Row(
+              const Row(
                 children: [
-                  const SizedBox(width: 9),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const CalendarPage()),
-                      );
-                    },
-                    child: const Text('일기 기록',
-                        style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black)),
+                  SizedBox(width: 9),
+                  Text(
+                    '일기 기록',
+                    style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black),
                   ),
                 ],
               ),
@@ -190,41 +163,25 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(26),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Text(
-              '오늘 하루는 어땠나요?',
-              style: Theme.of(context).textTheme.headlineMedium,
+            Row(
+              children: [
+                const Text(
+                  '12월 2주',
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black),
+                ),
+              ],
             ),
             SizedBox(
                 width: 207,
                 height: 207,
                 child: Image.asset("assets/images/home_image.png")),
-            SizedBox(
-              width: 275,
-              height: 60,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const TalkPage()),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(0)),
-                    backgroundColor: const Color.fromRGBO(217, 217, 217, 1)),
-                child: const Text(
-                  '대화 시작하기',
-                  style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black),
-                ),
-              ),
-            ),
           ],
         ),
       ),
