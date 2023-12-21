@@ -1,7 +1,9 @@
-import 'package:ddgood/completion.dart';
 import 'package:flutter/material.dart';
 
+import 'completion.dart';
 import 'drawer/drawer.dart';
+import 'utils/color_scheme.dart';
+import 'utils/text_theme.dart';
 
 class ConvertPage extends StatefulWidget {
   const ConvertPage({
@@ -39,26 +41,20 @@ class _ConvertPageState extends State<ConvertPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColor.secondary,
+        title: const Text('일기쓰기', style: hm21),
+        automaticallyImplyLeading: false,
+        iconTheme: const IconThemeData(color: AppColor.neutral),
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
-              icon: const Icon(
-                Icons.menu,
-                color: Colors.white,
-              ),
-              iconSize: 25,
+              icon: const Icon(Icons.menu),
               onPressed: () {
                 Scaffold.of(context).openDrawer();
               },
             );
           },
         ),
-        backgroundColor: Colors.black87,
-        title: const Text(
-          '서비스명',
-          style: TextStyle(color: Colors.white),
-        ),
-        automaticallyImplyLeading: false,
       ),
       drawer: const MyDrawer(),
       body: AnimatedSwitcher(
@@ -71,7 +67,7 @@ class _ConvertPageState extends State<ConvertPage> {
               Text(
                 isTextConverted ? '변환이\n완료되었어요' : '텍스트로\n변환중!',
                 textAlign: TextAlign.center, // 텍스트 중앙 정렬
-                style: Theme.of(context).textTheme.headlineMedium,
+                style: hm21.copyWith(color: AppColor.text)
               ),
               const SizedBox(height: 59.5),
               GestureDetector(
