@@ -1,6 +1,7 @@
 import 'package:ddgood/drawer/calendar.dart';
 import 'package:ddgood/drawer/wordcloud.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 import 'talk.dart';
 
