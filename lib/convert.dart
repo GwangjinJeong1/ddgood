@@ -1,22 +1,44 @@
+import 'package:ddgood/completion.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import 'convert.dart';
+import 'diary.dart';
 import 'drawer/calendar.dart';
 import 'drawer/wordcloud.dart';
 import 'main.dart';
 
-class TalkPage extends StatefulWidget {
-  const TalkPage({
+class ConvertPage extends StatefulWidget {
+  const ConvertPage({
     super.key,
   });
 
   @override
-  State<TalkPage> createState() => _TalkPageState();
+  State<ConvertPage> createState() => _ConvertPageState();
 }
 
-class _TalkPageState extends State<TalkPage> {
-  bool isPaused = false;
+class _ConvertPageState extends State<ConvertPage> {
+  // 변수 추가
+  bool isTextConverted = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // 2초 뒤에 isTextConverted를 true로 설정
+    Future.delayed(const Duration(seconds: 2), () {
+      setState(() {
+        isTextConverted = true;
+      });
+    });
+    // 4초 뒤에 isTextConverted를 true로 설정
+    Future.delayed(const Duration(seconds: 4), () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const CompletionPage()),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -183,74 +205,34 @@ class _TalkPageState extends State<TalkPage> {
           ),
         ),
       ),
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            const SizedBox(height: 84),
-            Text(
-              '듣고 있어요!',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const SizedBox(height: 118),
-            LottieBuilder.asset(
-              'assets/images/talk.json',
-              animate: true, // 애니메이션을 재생하도록 설정
-              repeat: isPaused ? false : true, // 애니메이션을 반복하도록 설정 (선택 사항)
-              frameRate: FrameRate.max, // 최대 프레임 속도로 설정 (선택 사항)
-              onLoaded: (composition) {
-                // 로티 컴포지션 로딩 후 실행할 동작 설정 (선택 사항)
-              },
-            ),
-            const SizedBox(height: 125.46),
-            SizedBox(
-              width: 275,
-              height: 60,
-              child: ElevatedButton(
-                onPressed: () {
+      body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 500),
+        child: Center(
+          key: ValueKey<bool>(isTextConverted),
+          child: Column(
+            children: <Widget>[
+              const SizedBox(height: 118),
+              Text(
+                isTextConverted ? '변환이\n완료되었어요' : '텍스트로\n변환중!',
+                textAlign: TextAlign.center, // 텍스트 중앙 정렬
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+              const SizedBox(height: 59.5),
+              GestureDetector(
+                onTap: () {
                   setState(() {
-                    if (isPaused == false)
-                      isPaused = true;
-                    else if (isPaused == true) isPaused = false;
+                    isTextConverted = true;
                   });
                 },
-                style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16)),
-                    backgroundColor: const Color.fromRGBO(246, 222, 131, 1)),
-                child: const Text(
-                  '일시중지',
-                  style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black),
-                ),
+                child: SizedBox(
+                    width: 181,
+                    height: 181,
+                    child: isTextConverted
+                        ? Image.asset("assets/images/Check.png")
+                        : Image.asset("assets/images/Text.png")),
               ),
-            ),
-            const SizedBox(height: 11),
-            SizedBox(
-              width: 275,
-              height: 60,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ConvertPage()),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16)),
-                    backgroundColor: Colors.black),
-                child: const Text(
-                  '완료',
-                  style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white),
-                ),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

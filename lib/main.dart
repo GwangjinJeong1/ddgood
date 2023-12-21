@@ -39,15 +39,22 @@ class _MyHomePageState extends State<MyHomePage> {
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
-              icon: const Icon(Icons.menu),
+              icon: const Icon(
+                Icons.menu,
+                color: Colors.white,
+              ),
+              iconSize: 25,
               onPressed: () {
                 Scaffold.of(context).openDrawer();
               },
             );
           },
         ),
-        backgroundColor: const Color.fromRGBO(217, 217, 217, 1),
-        title: const Text('서비스명'),
+        backgroundColor: Colors.black87,
+        title: const Text(
+          '서비스명',
+          style: TextStyle(color: Colors.white),
+        ),
         automaticallyImplyLeading: false,
       ),
       drawer: Drawer(
@@ -193,16 +200,18 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
+            const SizedBox(height: 84),
             Text(
               '오늘 하루는 어땠나요?',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            const SizedBox(height: 74.5),
             SizedBox(
-                width: 207,
-                height: 207,
-                child: Image.asset("assets/images/home_image.png")),
+                width: 313,
+                height: 313,
+                child: Image.asset("assets/images/Chicks.png")),
+            const SizedBox(height: 74.5),
             SizedBox(
               width: 275,
               height: 60,
@@ -215,14 +224,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(0)),
-                    backgroundColor: const Color.fromRGBO(217, 217, 217, 1)),
+                        borderRadius: BorderRadius.circular(16)),
+                    backgroundColor: Colors.black87),
                 child: const Text(
-                  '대화 시작하기',
+                  '기록하러 가기',
                   style: TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w600,
-                      color: Colors.black),
+                      color: Colors.white),
                 ),
               ),
             ),

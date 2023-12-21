@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 import 'drawer/calendar.dart';
-import 'completion.dart';
+import 'convert.dart';
 
 class DiaryPage extends StatefulWidget {
   const DiaryPage({
@@ -110,7 +110,7 @@ class _DiaryPageState extends State<DiaryPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const CompletionPage()),
+                            builder: (context) => const ConvertPage()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
