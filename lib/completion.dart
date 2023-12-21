@@ -81,14 +81,13 @@ class _CompletionPageState extends State<CompletionPage> {
               ),
               Row(
                 children: [
-
                   const SizedBox(width: 9),
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const MyHomePage()),
+                            builder: (context) => const HomePage()),
                       );
                     },
                     child: const Text(
@@ -255,7 +254,6 @@ class _CompletionPageState extends State<CompletionPage> {
                               color: Color.fromRGBO(232, 183, 0, 1),
                             ),
                           ),
-
                         ),
                       ),
                     ),
@@ -297,7 +295,7 @@ class _CompletionPageState extends State<CompletionPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const MyHomePage()),
+                                builder: (context) => const HomePage()),
                           );
                         },
                         style: ElevatedButton.styleFrom(

@@ -1,3 +1,4 @@
+import 'package:ddgood/home.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -87,7 +88,7 @@ class _TalkPageState extends State<TalkPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const MyHomePage()),
+                            builder: (context) => const HomePage()),
                       );
                     },
                     child: const Text(
