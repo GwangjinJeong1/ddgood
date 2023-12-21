@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import '../main.dart';
-import 'wordcloud.dart';
-
 class CalendarPage extends StatefulWidget {
   const CalendarPage({super.key});
 
@@ -14,166 +11,14 @@ class CalendarPage extends StatefulWidget {
 
 class _CalendarPageState extends State<CalendarPage> {
   DateTime _today = DateTime.now();
-  int countDiary = 15;
+  int countDiary = _selectedDays.length;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              icon: const Icon(Icons.menu),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-            );
-          },
-        ),
-        backgroundColor: const Color.fromRGBO(217, 217, 217, 1),
-        title: const Text('서비스명'),
-        automaticallyImplyLeading: false,
-      ),
-      drawer: Drawer(
-        width: 243,
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const SizedBox(height: 50),
-              const Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [Spacer(), Icon(Icons.close)],
-              ),
-              const SizedBox(height: 13),
-              const Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  CircleAvatar(
-                    radius: 26,
-                    backgroundColor: Color.fromRGBO(149, 149, 149, 1),
-                  ),
-                  SizedBox(width: 21),
-                  Text(
-                    '사용자',
-                    style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black),
-                  ),
-                  Spacer(),
-                  Icon(Icons.edit_outlined)
-                ],
-              ),
-              const SizedBox(height: 26),
-              const Divider(
-                thickness: 0.4,
-                color: Color.fromRGBO(149, 149, 149, 1),
-              ),
-              Row(
-                children: [
-                  const SizedBox(width: 9),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const MyHomePage()),
-                      );
-                    },
-                    child: const Text(
-                      '홈',
-                      style: TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black),
-                    ),
-                  ),
-                ],
-              ),
-              const Divider(
-                thickness: 0.4,
-                color: Color.fromRGBO(149, 149, 149, 1),
-              ),
-              Row(
-                children: [
-                  const SizedBox(width: 9),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const WordCloudPage()),
-                      );
-                    },
-                    child: const Text(
-                      '워드 클라우드',
-                      style: TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black),
-                    ),
-                  ),
-                ],
-              ),
-              const Divider(
-                thickness: 0.4,
-                color: Color.fromRGBO(149, 149, 149, 1),
-              ),
-              Row(
-                children: [
-                  const SizedBox(width: 9),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const CalendarPage()),
-                      );
-                    },
-                    child: const Text('일기 기록',
-                        style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black)),
-                  ),
-                ],
-              ),
-              const Divider(
-                thickness: 0.4,
-                color: Color.fromRGBO(149, 149, 149, 1),
-              ),
-              const Spacer(),
-              const Row(
-                children: [
-                  SizedBox(width: 9),
-                  Text(
-                    '설정',
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 12),
-              const Row(
-                children: [
-                  SizedBox(width: 9),
-                  Text(
-                    '로그아웃',
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 22),
-            ],
-          ),
-        ),
+        centerTitle: true,
+        title: const Text("일기 기록"),
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 17, top: 16, right: 16),
@@ -198,6 +43,26 @@ class _CalendarPageState extends State<CalendarPage> {
   }
 }
 
+// 일기를 작성한 날짜 list(임시)
+final List<DateTime> _selectedDays = [
+  DateTime(2023, 12, 5),
+  DateTime(2023, 12, 6),
+  DateTime(2023, 12, 7),
+  DateTime(2023, 12, 8),
+  DateTime(2023, 12, 9),
+  DateTime(2023, 12, 10),
+  DateTime(2023, 12, 11),
+  DateTime(2023, 12, 12),
+  DateTime(2023, 12, 14),
+  DateTime(2023, 12, 15),
+  DateTime(2023, 12, 16),
+  DateTime(2023, 12, 18),
+  DateTime(2023, 12, 24),
+  DateTime(2023, 12, 25),
+  DateTime(2023, 12, 26)
+];
+late DateTime _today;
+
 class MonthCalendar extends StatefulWidget {
   const MonthCalendar(
       {super.key, required this.today, required this.onMonthChanged});
@@ -210,14 +75,7 @@ class MonthCalendar extends StatefulWidget {
 }
 
 class _MonthCalendarState extends State<MonthCalendar> {
-  late DateTime _today;
   late String month;
-  final List<DateTime> _selectedDays = [
-    DateTime(2023, 12, 3),
-    DateTime(2023, 12, 5),
-    DateTime(2023, 12, 19),
-    DateTime(2023, 12, 20)
-  ];
 
   @override
   void initState() {
@@ -231,6 +89,7 @@ class _MonthCalendarState extends State<MonthCalendar> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        // 월 표시
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 6.0),
           child: Row(
@@ -266,40 +125,22 @@ class _MonthCalendarState extends State<MonthCalendar> {
         ),
         const SizedBox(height: 15),
         weekdays(),
-        TableCalendar(
-          focusedDay: _today,
-          firstDay: DateTime(_today.year, _today.month),
-          lastDay: DateTime(_today.year, _today.month + 1, 0),
-          headerVisible: false,
-          daysOfWeekVisible: false,
-          calendarStyle: CalendarStyle(
-            outsideDaysVisible: false,
-            todayDecoration: BoxDecoration(
-                color: _selectedDays.contains(_today)
-                    ? Color(0xffD9D9D9)
-                    : Colors.transparent,
-                border: Border.all(width: 2),
-                borderRadius: BorderRadius.circular(25)),
-            selectedDecoration: BoxDecoration(
-                color: Color(0xffD9D9D9),
-                border: _selectedDays.contains(_today)
-                    ? Border.all(width: 2)
-                    : null,
-                borderRadius: BorderRadius.circular(25)),
-            todayTextStyle: const TextStyle(fontSize: 16),
-            selectedTextStyle: const TextStyle(fontSize: 16),
-            defaultTextStyle: const TextStyle(fontSize: 16),
-            weekendTextStyle: const TextStyle(fontSize: 16),
-          ),
-          selectedDayPredicate: (day) =>
-              _selectedDays.any((selectedDay) => isSameDay(selectedDay, day)),
-        ),
+        const CustomCalendar(),
       ],
     );
   }
 
+  // 요일 표시
   Widget weekdays() {
-    List<String> week = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+    List<String> week = [
+      'S',
+      'M',
+      'T',
+      'W',
+      'T',
+      'F',
+      'S'
+    ];
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: week.map((day) {
@@ -309,6 +150,47 @@ class _MonthCalendarState extends State<MonthCalendar> {
           child: Text(day),
         );
       }).toList(),
+    );
+  }
+}
+
+// 달력 class
+class CustomCalendar extends StatefulWidget {
+  const CustomCalendar({super.key});
+
+  @override
+  State<CustomCalendar> createState() => _CustomCalendarState();
+}
+
+class _CustomCalendarState extends State<CustomCalendar> {
+  @override
+  Widget build(BuildContext context) {
+    return TableCalendar(
+      focusedDay: _today,
+      firstDay: DateTime(_today.year, _today.month),
+      lastDay: DateTime(_today.year, _today.month + 1, 0),
+      headerVisible: false,
+      daysOfWeekVisible: false,
+      calendarStyle: CalendarStyle(
+        outsideDaysVisible: false,
+        todayDecoration: BoxDecoration(
+            color: _selectedDays.contains(_today)
+                ? const Color(0xffD9D9D9)
+                : Colors.transparent,
+            border: Border.all(width: 2),
+            borderRadius: BorderRadius.circular(25)),
+        selectedDecoration: BoxDecoration(
+            color: const Color(0xffD9D9D9),
+            border:
+                _selectedDays.contains(_today) ? Border.all(width: 2) : null,
+            borderRadius: BorderRadius.circular(25)),
+        todayTextStyle: const TextStyle(fontSize: 16),
+        selectedTextStyle: const TextStyle(fontSize: 16),
+        defaultTextStyle: const TextStyle(fontSize: 16),
+        weekendTextStyle: const TextStyle(fontSize: 16),
+      ),
+      selectedDayPredicate: (day) =>
+          _selectedDays.any((selectedDay) => isSameDay(selectedDay, day)),
     );
   }
 }

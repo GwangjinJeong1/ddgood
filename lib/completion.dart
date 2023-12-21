@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 import 'diary.dart';
-import 'main.dart';
+import 'home.dart';
 
 class CompletionPage extends StatefulWidget {
   const CompletionPage({
@@ -58,7 +58,7 @@ class _CompletionPageState extends State<CompletionPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => DiaryPage()),
+                          MaterialPageRoute(builder: (context) => const DiaryPage()),
                         );
                       },
                       style: ElevatedButton.styleFrom(
@@ -85,7 +85,7 @@ class _CompletionPageState extends State<CompletionPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => MyHomePage()),
+                          MaterialPageRoute(builder: (context) => const MyHomePage()),
                         );
                       },
                       style: ElevatedButton.styleFrom(
