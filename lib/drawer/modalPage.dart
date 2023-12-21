@@ -2,29 +2,8 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import 'utils/color_scheme.dart';
-import 'utils/text_theme.dart';
-
-class BottomTest extends StatefulWidget {
-  const BottomTest({super.key});
-
-  @override
-  State<BottomTest> createState() => _BottomTestState();
-}
-
-class _BottomTestState extends State<BottomTest> {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: TextButton(
-        onPressed: () => showModalBottomSheet(
-            context: context,
-            builder: (context) => CalendarModal(today: DateTime.now())),
-        child: const Text("open the bottom sheet"),
-      ),
-    );
-  }
-}
+import '../utils/color_scheme.dart';
+import '../utils/text_theme.dart';
 
 // 일기를 작성한 날짜 list(임시)
 final List<DateTime> _selectedDays = [
@@ -177,7 +156,9 @@ class _CalendarModalState extends State<CalendarModal> {
                 weekendTextStyle: br15,
               ),
               onDaySelected: (selectedDay, focusedDay) {
-                Navigator.pushNamed(context, '/diary');
+                setState(() {
+                  _today = selectedDay;
+                });
               },
               selectedDayPredicate: (day) => _selectedDays
                   .any((selectedDay) => isSameDay(selectedDay, day)),
