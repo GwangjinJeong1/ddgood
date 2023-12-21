@@ -85,7 +85,7 @@ class _CompletionPageState extends State<CompletionPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const MyHomePage()),
+                          MaterialPageRoute(builder: (context) => const HomePage()),
                         );
                       },
                       style: ElevatedButton.styleFrom(
