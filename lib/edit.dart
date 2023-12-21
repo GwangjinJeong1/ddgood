@@ -139,25 +139,17 @@ class _DiaryEditPageState extends State<DiaryEditPage> {
                       ),
                     ),
                   ),
-                  const Spacer(),
-                  GestureDetector(
-                      onTap: () {}, child: const Icon(Icons.edit_outlined)),
-                  const SizedBox(width: 10),
-                  const Icon(Icons.delete_outline)
                 ],
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 21),
               Container(
-                padding: const EdgeInsets.only(top: 8),
-                height: 343,
+                height: 419,
                 width: 364,
-                color: Colors.transparent, // 연두색 설정
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextFormField(
+                color: const Color.fromRGBO(255, 245, 205, 0.4),
+                child: Stack(
+                  children: [
+                    SingleChildScrollView(
+                      child: TextFormField(
                         key: const ValueKey(1),
                         maxLines: null,
                         decoration: const InputDecoration(
@@ -172,28 +164,24 @@ class _DiaryEditPageState extends State<DiaryEditPage> {
                         onChanged: (value) {},
                         onSaved: (value) {},
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(height: 54),
+              const SizedBox(height: 13),
               SizedBox(
                 width: 343,
                 height: 60,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const DiaryPage()),
-                    );
+                    Navigator.pop(context);
                   },
                   style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16)),
-                      backgroundColor: Colors.black87),
+                      backgroundColor: Colors.black),
                   child: const Text(
-                    '기록하러 가기',
+                    '수정 완료',
                     style: TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.w600,
