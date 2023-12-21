@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 import 'diary.dart';
-
-import 'drawer/calendar.dart';
 import 'drawer/drawer.dart';
-import 'drawer/wordcloud.dart';
 import 'home.dart';
 
 class CompletionPage extends StatefulWidget {
@@ -65,28 +61,24 @@ class _CompletionPageState extends State<CompletionPage> {
                       style: TextStyle(fontSize: 21),
                     ),
                     const SizedBox(height: 58),
-                    SizedBox(
+                    Container(
                       width: 167,
                       height: 44,
-                      child: Container(
-                        width: double.infinity, // Adjust width as needed
-                        height: 60,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          border: Border.all(
-                            color: const Color.fromRGBO(232, 183, 0, 1),
-                            width: 1,
-                          ),
-                          color: const Color.fromRGBO(255, 245, 205, 1),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(
+                          color: const Color.fromRGBO(232, 183, 0, 1),
+                          width: 1,
                         ),
-                        child: const Center(
-                          child: Text(
-                            '# 일어나',
-                            style: TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.w700,
-                              color: Color.fromRGBO(232, 183, 0, 1),
-                            ),
+                        color: const Color.fromRGBO(255, 245, 205, 1),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          '# 일어나',
+                          style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w700,
+                            color: Color.fromRGBO(232, 183, 0, 1),
                           ),
                         ),
                       ),

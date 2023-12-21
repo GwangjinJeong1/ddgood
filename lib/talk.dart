@@ -1,12 +1,8 @@
-import 'package:ddgood/home.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 import 'convert.dart';
-import 'drawer/calendar.dart';
 import 'drawer/drawer.dart';
-import 'drawer/wordcloud.dart';
-import 'main.dart';
 
 class TalkPage extends StatefulWidget {
   const TalkPage({
@@ -76,12 +72,16 @@ class _TalkPageState extends State<TalkPage> {
                   });
                 },
                 style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16)),
-                    backgroundColor: const Color.fromRGBO(246, 222, 131, 1)),
-                child: const Text(
-                  '일시중지',
-                  style: TextStyle(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  backgroundColor: isPaused
+                      ? Color.fromRGBO(232, 183, 0, 1)
+                      : Color.fromRGBO(246, 222, 131, 1),
+                ),
+                child: Text(
+                  isPaused ? '일기 이어쓰기' : '일시중지',
+                  style: const TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w600,
                       color: Colors.black),

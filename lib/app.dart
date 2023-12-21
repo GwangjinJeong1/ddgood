@@ -10,15 +10,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'ddgood',
-        initialRoute: '/',
-        routes: {
-          // '/login': (BuildContext context) => const LoginPage(),
-          '/': (BuildContext context) => const HomePage(),
-          '/wordcloud': (BuildContext context) => const WordCloudPage(),
-          '/calendar': (BuildContext context) => const CalendarPage(),
-        },
-        // theme: ThemeData.light(useMaterial3: true),
-      );
+      debugShowCheckedModeBanner: false,
+      title: 'ddgood',
+      initialRoute: '/',
+      routes: {
+        // '/login': (BuildContext context) => const LoginPage(),
+        '/': (BuildContext context) => const HomePage(),
+        '/wordcloud': (BuildContext context) => const WordCloudPage(),
+        '/calendar': (BuildContext context) => const CalendarPage(),
+      },
+      // theme: ThemeData.light(useMaterial3: true),
+    );
   }
 }
