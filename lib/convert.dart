@@ -65,7 +65,7 @@ class _ConvertPageState extends State<ConvertPage> {
             children: <Widget>[
               const SizedBox(height: 118),
               Text(
-                isTextConverted ? '변환이\n완료되었어요' : '텍스트로\n변환중!',
+                isTextConverted ? '변환이\n완료되었어요' : '텍스트로\n변환 중이에요',
                 textAlign: TextAlign.center, // 텍스트 중앙 정렬
                 style: hm21.copyWith(color: AppColor.text)
               ),
