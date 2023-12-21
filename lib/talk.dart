@@ -21,6 +21,7 @@ class _TalkPageState extends State<TalkPage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: AppColor.neutral,
       appBar: AppBar(
         backgroundColor: AppColor.secondary,
         title: const Text('일기쓰기', style: hm21),
@@ -76,10 +77,7 @@ class _TalkPageState extends State<TalkPage> {
                     ),
                     backgroundColor:
                         isPaused ? AppColor.primary : AppColor.button),
-                child: Text(
-                  isPaused ? '일기 이어쓰기' : '일시중지',
-                  style: bs17
-                ),
+                child: Text(isPaused ? '일기 이어쓰기' : '일시중지', style: bs17),
               ),
             ),
             const SizedBox(height: 11),
@@ -98,10 +96,8 @@ class _TalkPageState extends State<TalkPage> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16)),
                     backgroundColor: AppColor.secondary),
-                child: Text(
-                  '완료',
-                  style: bs17.copyWith(color: AppColor.neutral)
-                ),
+                child:
+                    Text('완료', style: bs17.copyWith(color: AppColor.neutral)),
               ),
             ),
           ],

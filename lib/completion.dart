@@ -53,9 +53,16 @@ class _CompletionPageState extends State<CompletionPage> {
               child: Column(
                 children: <Widget>[
                   const SizedBox(height: 178),
-                  Text(
-                    '칙칙님의 하루',
-                    style: hm21.copyWith(color: AppColor.text),
+                  RichText(
+                    text: TextSpan(
+                      style: hm21.copyWith(color: AppColor.text),
+                      children: [
+                        TextSpan(
+                            text: '칙칙',
+                            style: hs21.copyWith(color: AppColor.text)),
+                        const TextSpan(text: '님의 하루'),
+                      ],
+                    ),
                   ),
                   const SizedBox(height: 58),
                   const HashTag(content: '일어나'),
@@ -77,13 +84,9 @@ class _CompletionPageState extends State<CompletionPage> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
                         ),
-                        backgroundColor:
-                            AppColor.button,
+                        backgroundColor: AppColor.button,
                       ),
-                      child: const Text(
-                        '일기 확인하기',
-                        style: bs17
-                      ),
+                      child: const Text('일기 확인하기', style: bs17),
                     ),
                   ),
                   const SizedBox(height: 11),
@@ -104,10 +107,8 @@ class _CompletionPageState extends State<CompletionPage> {
                         ),
                         backgroundColor: AppColor.secondary,
                       ),
-                      child: Text(
-                        '일기 쓰러가기',
-                        style: bs17.copyWith(color: AppColor.neutral)
-                      ),
+                      child: Text('일기 쓰러가기',
+                          style: bs17.copyWith(color: AppColor.neutral)),
                     ),
                   ),
                 ],
