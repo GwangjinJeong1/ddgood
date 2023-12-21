@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'diary.dart';
 import 'drawer/calendar.dart';
 import 'drawer/wordcloud.dart';
 import 'home.dart';

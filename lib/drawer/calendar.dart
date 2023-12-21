@@ -26,7 +26,6 @@ class _CalendarPageState extends State<CalendarPage> {
         title: Text("일기 기록", style: hm21.copyWith(color: AppColor.neutral)),
         backgroundColor: AppColor.secondary,
         iconTheme: const IconThemeData(color: AppColor.neutral),
-        
       ),
       drawer: const MyDrawer(),
       body: Padding(
@@ -35,22 +34,24 @@ class _CalendarPageState extends State<CalendarPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             MonthCalendar(
-              today: _today,
-              onMonthChanged: (newMonth) {
-                setState(() {
-                  _today = DateTime(newMonth.year, newMonth.month, _today.day);
-                });
-              },
-            ),
+                today: _today,
+                onMonthChanged: (newMonth) {
+                  setState(() {
+                    _today =
+                        DateTime(newMonth.year, newMonth.month, _today.day);
+                  });
+                }),
             const SizedBox(height: 60),
-            RichText(text: TextSpan(
-              text: '이번 달 ',
-              style: bm17.copyWith(color: AppColor.text),
-              children: [
-                TextSpan(text: '$countDiary', style: hs21.copyWith(color: AppColor.primary)),
-                const TextSpan(text: '번의 일기를 기록했어요', style: bm17)
-              ]
-            ))
+            RichText(
+                text: TextSpan(
+                    text: '이번 달 ',
+                    style: bm17,
+                    children: [
+                  TextSpan(
+                      text: '$countDiary',
+                      style: hs21.copyWith(color: AppColor.primary)),
+                  const TextSpan(text: '번의 일기를 기록했어요', style: bm17)
+                ]))
           ],
         ),
       ),
@@ -76,7 +77,6 @@ final List<DateTime> _selectedDays = [
   DateTime(2023, 12, 25),
   DateTime(2023, 12, 26)
 ];
-late DateTime _today;
 
 class MonthCalendar extends StatefulWidget {
   const MonthCalendar(
@@ -90,6 +90,7 @@ class MonthCalendar extends StatefulWidget {
 }
 
 class _MonthCalendarState extends State<MonthCalendar> {
+  late DateTime _today;
   late String month;
 
   @override
@@ -116,20 +117,17 @@ class _MonthCalendarState extends State<MonthCalendar> {
                     _today =
                         DateTime(_today.year, _today.month - 1, _today.day);
                     month = DateFormat('M월', 'ko_KR').format(_today);
-                    widget.onMonthChanged(_today);
                   });
                 },
                 icon: const Icon(Icons.keyboard_arrow_left_rounded),
               ),
-              Text(month,
-                  style: hb24),
+              Text(month, style: hb24.copyWith(color: AppColor.text)),
               IconButton(
                 onPressed: () {
                   setState(() {
                     _today =
                         DateTime(_today.year, _today.month + 1, _today.day);
                     month = DateFormat('M월', 'ko_KR').format(_today);
-                    widget.onMonthChanged(_today);
                   });
                 },
                 icon: const Icon(Icons.keyboard_arrow_right_rounded),
@@ -138,49 +136,39 @@ class _MonthCalendarState extends State<MonthCalendar> {
           ),
         ),
         const SizedBox(height: 15),
-        const CustomCalendar(),
+        TableCalendar(
+          focusedDay: _today,
+          firstDay: DateTime(_today.year, _today.month),
+          lastDay: DateTime(_today.year, _today.month + 1, 0),
+          headerVisible: false,
+          daysOfWeekStyle:
+              const DaysOfWeekStyle(weekdayStyle: bs15, weekendStyle: bs15),
+          calendarStyle: CalendarStyle(
+            outsideDaysVisible: false,
+            todayDecoration: BoxDecoration(
+                color: _selectedDays.contains(_today)
+                    ? AppColor.button
+                    : Colors.transparent,
+                border: Border.all(width: 2, color: AppColor.primary),
+                borderRadius: BorderRadius.circular(25)),
+            selectedDecoration: BoxDecoration(
+                color: AppColor.button,
+                border: _selectedDays.contains(_today)
+                    ? Border.all(width: 2)
+                    : null,
+                borderRadius: BorderRadius.circular(25)),
+            todayTextStyle: br15,
+            selectedTextStyle: br15,
+            defaultTextStyle: br15,
+            weekendTextStyle: br15,
+          ),
+          onDaySelected: (selectedDay, focusedDay) {
+            Navigator.pushNamed(context, '/diary');
+          },
+          selectedDayPredicate: (day) =>
+              _selectedDays.any((selectedDay) => isSameDay(selectedDay, day)),
+        )
       ],
-    );
-  }
-}
-
-// 달력 class
-class CustomCalendar extends StatefulWidget {
-  const CustomCalendar({super.key});
-
-  @override
-  State<CustomCalendar> createState() => _CustomCalendarState();
-}
-
-class _CustomCalendarState extends State<CustomCalendar> {
-  @override
-  Widget build(BuildContext context) {
-    return TableCalendar(
-      focusedDay: _today,
-      firstDay: DateTime(_today.year, _today.month),
-      lastDay: DateTime(_today.year, _today.month + 1, 0),
-      headerVisible: false,
-      daysOfWeekStyle: const DaysOfWeekStyle(weekdayStyle: bs15, weekendStyle: bs15),
-      calendarStyle: CalendarStyle(
-        outsideDaysVisible: false,
-        todayDecoration: BoxDecoration(
-            color: _selectedDays.contains(_today)
-                ? AppColor.button
-                : Colors.transparent,
-            border: Border.all(width: 2, color: AppColor.primary),
-            borderRadius: BorderRadius.circular(25)),
-        selectedDecoration: BoxDecoration(
-            color: AppColor.button,
-            border:
-                _selectedDays.contains(_today) ? Border.all(width: 2) : null,
-            borderRadius: BorderRadius.circular(25)),
-        todayTextStyle: br15,
-        selectedTextStyle: br15,
-        defaultTextStyle: br15,
-        weekendTextStyle: br15,
-      ),
-      selectedDayPredicate: (day) =>
-          _selectedDays.any((selectedDay) => isSameDay(selectedDay, day)),
     );
   }
 }
