@@ -1,22 +1,44 @@
+import 'package:ddgood/completion.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 import 'diary.dart';
-
 import 'drawer/calendar.dart';
 import 'drawer/wordcloud.dart';
-import 'home.dart';
+import 'main.dart';
 
-class CompletionPage extends StatefulWidget {
-  const CompletionPage({
+class ConvertPage extends StatefulWidget {
+  const ConvertPage({
     super.key,
   });
 
   @override
-  State<CompletionPage> createState() => _CompletionPageState();
+  State<ConvertPage> createState() => _ConvertPageState();
 }
 
-class _CompletionPageState extends State<CompletionPage> {
+class _ConvertPageState extends State<ConvertPage> {
+  // 변수 추가
+  bool isTextConverted = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // 2초 뒤에 isTextConverted를 true로 설정
+    Future.delayed(const Duration(seconds: 2), () {
+      setState(() {
+        isTextConverted = true;
+      });
+    });
+    // 4초 뒤에 isTextConverted를 true로 설정
+    Future.delayed(const Duration(seconds: 4), () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const CompletionPage()),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,7 +103,6 @@ class _CompletionPageState extends State<CompletionPage> {
               ),
               Row(
                 children: [
-
                   const SizedBox(width: 9),
                   GestureDetector(
                     onTap: () {
@@ -184,140 +205,31 @@ class _CompletionPageState extends State<CompletionPage> {
           ),
         ),
       ),
-      body: Container(
-        color: const Color.fromRGBO(250, 248, 244, 1),
+      body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 500),
         child: Center(
-          child: Stack(
+          key: ValueKey<bool>(isTextConverted),
+          child: Column(
             children: <Widget>[
-              Image.asset(
-                "assets/images/Shine.png",
-                width: 410,
-                height: 587,
-                fit: BoxFit.cover,
+              const SizedBox(height: 118),
+              Text(
+                isTextConverted ? '변환이\n완료되었어요' : '텍스트로\n변환중!',
+                textAlign: TextAlign.center, // 텍스트 중앙 정렬
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
-              Container(
-                alignment: Alignment.center,
-                child: Column(
-                  children: <Widget>[
-                    const SizedBox(height: 178),
-                    const Text(
-                      '칙칙님의 하루',
-                      style: TextStyle(fontSize: 21),
-                    ),
-                    const SizedBox(height: 58),
-                    SizedBox(
-                      width: 167,
-                      height: 44,
-                      child: Container(
-                        width: double.infinity, // Adjust width as needed
-                        height: 60,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          border: Border.all(
-                            color: const Color.fromRGBO(232, 183, 0, 1),
-                            width: 1,
-                          ),
-                          color: const Color.fromRGBO(255, 245, 205, 1),
-                        ),
-                        child: const Center(
-                          child: Text(
-                            '# 일어나',
-                            style: TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.w700,
-                              color: Color.fromRGBO(232, 183, 0, 1),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    SizedBox(
-                      width: 167,
-                      height: 44,
-                      child: Container(
-                        width: double.infinity, // Adjust width as needed
-                        height: 60,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          border: Border.all(
-                            color: const Color.fromRGBO(232, 183, 0, 1),
-                            width: 1,
-                          ),
-                          color: const Color.fromRGBO(255, 245, 205, 1),
-                        ),
-                        child: const Center(
-                          child: Text(
-                            '# 추워',
-                            style: TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.w700,
-                              color: Color.fromRGBO(232, 183, 0, 1),
-                            ),
-                          ),
-
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 141),
-                    SizedBox(
-                      width: 275,
-                      height: 60,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const DiaryPage()),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          backgroundColor:
-                              const Color.fromRGBO(246, 222, 131, 1),
-                        ),
-                        child: const Text(
-                          '일기 확인하기',
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 11),
-                    SizedBox(
-                      width: 275,
-                      height: 60,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const MyHomePage()),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          backgroundColor: Colors.black,
-                        ),
-                        child: const Text(
-                          '일기 쓰러가기',
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              const SizedBox(height: 59.5),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    isTextConverted = true;
+                  });
+                },
+                child: SizedBox(
+                    width: 181,
+                    height: 181,
+                    child: isTextConverted
+                        ? Image.asset("assets/images/Check.png")
+                        : Image.asset("assets/images/Text.png")),
               ),
             ],
           ),
