@@ -97,6 +97,19 @@ class _MyDrawerState extends State<MyDrawer> {
               ],
             ),
             const Divider(thickness: 0.4, height: 30, color: AppColor.neutral),
+            Row(
+              children: [
+                const SizedBox(width: 9),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/modal');
+                  },
+                  child: Text('모달',
+                      style: bs17.copyWith(color: AppColor.neutral)),
+                ),
+              ],
+            ),
+            const Divider(thickness: 0.4, height: 30, color: AppColor.neutral),
             const Spacer(),
             Row(
               children: [

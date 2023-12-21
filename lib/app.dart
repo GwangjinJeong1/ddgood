@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'diary.dart';
 import 'drawer/calendar.dart';
 import 'drawer/wordcloud.dart';
+import 'bottomsheet.dart';
 import 'home.dart';
 
 class MyApp extends StatelessWidget {
@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
         '/': (BuildContext context) => const HomePage(),
         '/wordcloud': (BuildContext context) => const WordCloudPage(),
         '/calendar': (BuildContext context) => const CalendarPage(),
+        '/modal': (BuildContext context) => const BottomTest()
       },
       // theme: ThemeData.light(useMaterial3: true),
     );
