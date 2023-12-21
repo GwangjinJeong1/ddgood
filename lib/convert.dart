@@ -1,13 +1,7 @@
 import 'package:ddgood/completion.dart';
-import 'package:ddgood/home.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
-import 'diary.dart';
-import 'drawer/calendar.dart';
 import 'drawer/drawer.dart';
-import 'drawer/wordcloud.dart';
-import 'main.dart';
 
 class ConvertPage extends StatefulWidget {
   const ConvertPage({

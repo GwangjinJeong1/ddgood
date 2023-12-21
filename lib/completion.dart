@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'components/components.dart';
 import 'diary.dart';
-
 import 'drawer/drawer.dart';
 import 'home.dart';
 import 'utils/color_scheme.dart';
