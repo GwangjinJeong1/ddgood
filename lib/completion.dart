@@ -19,11 +19,12 @@ class CompletionPage extends StatefulWidget {
 class _CompletionPageState extends State<CompletionPage> {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppColor.neutral,
       appBar: AppBar(
         backgroundColor: AppColor.secondary,
-        title: const Text('서비스명', style: hm21),
+        title: const Text('일기쓰기', style: hm21),
         automaticallyImplyLeading: false,
         iconTheme: const IconThemeData(color: AppColor.neutral),
         leading: Builder(
@@ -52,9 +53,9 @@ class _CompletionPageState extends State<CompletionPage> {
               child: Column(
                 children: <Widget>[
                   const SizedBox(height: 178),
-                  const Text(
+                  Text(
                     '칙칙님의 하루',
-                    style: TextStyle(fontSize: 21),
+                    style: hm21.copyWith(color: AppColor.text),
                   ),
                   const SizedBox(height: 58),
                   const HashTag(content: '일어나'),
@@ -62,7 +63,7 @@ class _CompletionPageState extends State<CompletionPage> {
                   const HashTag(content: '추워'),
                   const SizedBox(height: 141),
                   SizedBox(
-                    width: 275,
+                    width: size.width - 50,
                     height: 60,
                     child: ElevatedButton(
                       onPressed: () {
@@ -77,21 +78,17 @@ class _CompletionPageState extends State<CompletionPage> {
                           borderRadius: BorderRadius.circular(16),
                         ),
                         backgroundColor:
-                            const Color.fromRGBO(246, 222, 131, 1),
+                            AppColor.button,
                       ),
                       child: const Text(
                         '일기 확인하기',
-                        style: TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
+                        style: bs17
                       ),
                     ),
                   ),
                   const SizedBox(height: 11),
                   SizedBox(
-                    width: 275,
+                    width: size.width - 50,
                     height: 60,
                     child: ElevatedButton(
                       onPressed: () {
@@ -105,15 +102,11 @@ class _CompletionPageState extends State<CompletionPage> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
                         ),
-                        backgroundColor: Colors.black,
+                        backgroundColor: AppColor.secondary,
                       ),
-                      child: const Text(
+                      child: Text(
                         '일기 쓰러가기',
-                        style: TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        ),
+                        style: bs17.copyWith(color: AppColor.neutral)
                       ),
                     ),
                   ),

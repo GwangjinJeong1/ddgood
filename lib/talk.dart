@@ -1,8 +1,10 @@
+import 'package:ddgood/utils/color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 import 'convert.dart';
 import 'drawer/drawer.dart';
+import 'utils/text_theme.dart';
 
 class TalkPage extends StatefulWidget {
   const TalkPage({
@@ -17,28 +19,23 @@ class _TalkPageState extends State<TalkPage> {
   bool isPaused = false;
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColor.secondary,
+        title: const Text('일기쓰기', style: hm21),
+        automaticallyImplyLeading: false,
+        iconTheme: const IconThemeData(color: AppColor.neutral),
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
-              icon: const Icon(
-                Icons.menu,
-                color: Colors.white,
-              ),
-              iconSize: 25,
+              icon: const Icon(Icons.menu),
               onPressed: () {
                 Scaffold.of(context).openDrawer();
               },
             );
           },
         ),
-        backgroundColor: Colors.black87,
-        title: const Text(
-          '서비스명',
-          style: TextStyle(color: Colors.white),
-        ),
-        automaticallyImplyLeading: false,
       ),
       drawer: const MyDrawer(),
       body: Center(
@@ -61,54 +58,49 @@ class _TalkPageState extends State<TalkPage> {
             ),
             const SizedBox(height: 125.46),
             SizedBox(
-              width: 275,
+              width: size.width - 50,
               height: 60,
               child: ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    if (isPaused == false)
+                    if (isPaused == false) {
                       isPaused = true;
-                    else if (isPaused == true) isPaused = false;
+                    } else if (isPaused == true) {
+                      isPaused = false;
+                    }
                   });
                 },
                 style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  backgroundColor: isPaused
-                      ? Color.fromRGBO(232, 183, 0, 1)
-                      : Color.fromRGBO(246, 222, 131, 1),
-                ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    backgroundColor:
+                        isPaused ? AppColor.primary : AppColor.button),
                 child: Text(
                   isPaused ? '일기 이어쓰기' : '일시중지',
-                  style: const TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black),
+                  style: bs17
                 ),
               ),
             ),
             const SizedBox(height: 11),
             SizedBox(
-              width: 275,
+              width: size.width - 50,
               height: 60,
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ConvertPage()),
+                    MaterialPageRoute(
+                        builder: (context) => const ConvertPage()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16)),
-                    backgroundColor: Colors.black),
-                child: const Text(
+                    backgroundColor: AppColor.secondary),
+                child: Text(
                   '완료',
-                  style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white),
+                  style: bs17.copyWith(color: AppColor.neutral)
                 ),
               ),
             ),

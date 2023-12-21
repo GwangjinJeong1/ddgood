@@ -17,6 +17,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppColor.neutral,
       appBar: AppBar(
@@ -50,7 +51,7 @@ class _HomePageState extends State<HomePage> {
                 child: Image.asset("assets/images/Chicks.png")),
             const SizedBox(height: 74.5),
             SizedBox(
-              width: 275,
+              width: size.width - 50,
               height: 60,
               child: ElevatedButton(
                 onPressed: () {
@@ -62,13 +63,10 @@ class _HomePageState extends State<HomePage> {
                 style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16)),
-                    backgroundColor: Colors.black87),
-                child: const Text(
-                  '기록하러 가기',
-                  style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white),
+                    backgroundColor: AppColor.secondary),
+                child: Text(
+                  '일기 쓰러가기',
+                  style: bs17.copyWith(color: AppColor.neutral)
                 ),
               ),
             ),
