@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 import 'diary.dart';
+
 import 'drawer/calendar.dart';
 import 'drawer/wordcloud.dart';
-import 'main.dart';
+import 'home.dart';
 
 class CompletionPage extends StatefulWidget {
   const CompletionPage({
@@ -80,6 +81,7 @@ class _CompletionPageState extends State<CompletionPage> {
               ),
               Row(
                 children: [
+
                   const SizedBox(width: 9),
                   GestureDetector(
                     onTap: () {
@@ -253,6 +255,7 @@ class _CompletionPageState extends State<CompletionPage> {
                               color: Color.fromRGBO(232, 183, 0, 1),
                             ),
                           ),
+
                         ),
                       ),
                     ),
