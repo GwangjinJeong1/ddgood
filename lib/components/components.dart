@@ -4,7 +4,12 @@ import '../utils/color_scheme.dart';
 import '../utils/text_theme.dart';
 
 class HashTag extends StatelessWidget {
-  const HashTag({super.key, required this.content, this.width = 167, this.height = 44, this.fontSize = 22});
+  const HashTag(
+      {super.key,
+      required this.content,
+      this.width = 167,
+      this.height = 44,
+      this.fontSize = 22});
 
   final String content;
   final double width;
@@ -22,7 +27,7 @@ class HashTag extends StatelessWidget {
           color: AppColor.primary,
           width: 1,
         ),
-        color: AppColor.tertiery,
+        color: AppColor.neutral2,
       ),
       child: Center(
         child: Text("# $content",

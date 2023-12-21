@@ -1,8 +1,7 @@
-import 'package:ddgood/diary.dart';
 import 'package:flutter/material.dart';
 
+import 'components/components.dart';
 import 'drawer/calendar.dart';
-import 'convert.dart';
 import 'drawer/drawer.dart';
 import 'utils/color_scheme.dart';
 import 'utils/text_theme.dart';
@@ -22,6 +21,7 @@ class _DiaryEditPageState extends State<DiaryEditPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.neutral,
       appBar: AppBar(
         leading: Builder(
           builder: (BuildContext context) {
@@ -45,22 +45,17 @@ class _DiaryEditPageState extends State<DiaryEditPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const SizedBox(height: 44),
-              const Text(
+              Text(
                 '2023',
-                style: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black),
+                style: bm17.copyWith(color: AppColor.text),
               ),
               Row(
                 children: [
-                  const Text(
+                  Text(
                     '12월 24일',
-                    style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black),
+                    style: hb24.copyWith(color: AppColor.text),
                   ),
+                  const SizedBox(width: 9),
                   GestureDetector(
                     onTap: () {
                       // 아이콘을 눌렀을 때 이동할 페이지로 이동
@@ -70,105 +65,72 @@ class _DiaryEditPageState extends State<DiaryEditPage> {
                             builder: (context) => const CalendarPage()),
                       );
                     },
-                    child: const SizedBox(
-                      width: 48.0, // 원하는 크기로 조절
-                      height: 48.0, // 원하는 크기로 조절
+                    child: SizedBox(
+                      width: 30, // 원하는 크기로 조절
+                      height: 30, // 원하는 크기로 조절
                       child: Center(
-                        child: Icon(
-                          Icons.calendar_today, // 달력 모양의 아이콘
-                          color: Color.fromRGBO(95, 94, 93, 1), // 아이콘 색상 설정
-                        ),
-                      ),
+                          child: Image.asset("assets/images/uil_calender.png")),
                     ),
                   )
                 ],
               ),
               const SizedBox(height: 29),
-              Row(
+              const Row(
                 children: [
-                  SizedBox(
-                    width: 88,
-                    height: 33,
-                    child: Container(
-                      width: double.infinity,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: const Color.fromRGBO(232, 183, 0, 1),
-                          width: 1,
-                        ),
-                        color: const Color.fromRGBO(255, 245, 205, 1),
+                  HashTag(content: '일어나', width: 88, height: 33, fontSize: 17),
+                  SizedBox(width: 6),
+                  HashTag(content: '추워', width: 88, height: 33, fontSize: 17),
+                ],
+              ),
+              const SizedBox(height: 21),
+              Stack(
+                children: [
+                  Container(
+                    height: 432,
+                    width: 364,
+                    decoration: BoxDecoration(
+                      color: const Color.fromRGBO(255, 255, 255, 0.4),
+                      border: Border.all(
+                        color: const Color.fromRGBO(224, 224, 224, 1),
+                        width: 2.0,
                       ),
-                      child: const Center(
-                        child: Text(
-                          '# 일어나',
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.w600,
-                            color: Color.fromRGBO(232, 183, 0, 1),
-                          ),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.only(top: 21, left: 23, right: 23),
+                      child: SingleChildScrollView(
+                        child: TextFormField(
+                          key: const ValueKey(1),
+                          maxLines: null,
+                          initialValue: content,
+                          onChanged: (value) {},
+                          onSaved: (value) {},
+                          style: bm15.copyWith(color: AppColor.text),
+                          cursorColor: Colors.black, // 여기에 추가
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(width: 6),
-                  SizedBox(
-                    width: 88,
-                    height: 33,
+                  Positioned(
+                    bottom: 0,
                     child: Container(
-                      width: double.infinity,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: const Color.fromRGBO(232, 183, 0, 1),
-                          width: 1,
-                        ),
-                        color: const Color.fromRGBO(255, 245, 205, 1),
-                      ),
-                      child: const Center(
-                        child: Text(
-                          '# 추워',
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.w600,
-                            color: Color.fromRGBO(232, 183, 0, 1),
-                          ),
+                      width: 393,
+                      height: 36,
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Color.fromRGBO(250, 248, 244, 0.00), // 투명
+                            Color(0xFFFAF8F4), // #FAF8F4
+                          ],
                         ),
                       ),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 21),
-              Container(
-                height: 419,
-                width: 364,
-                color: const Color.fromRGBO(255, 245, 205, 0.4),
-                child: Stack(
-                  children: [
-                    SingleChildScrollView(
-                      child: TextFormField(
-                        key: const ValueKey(1),
-                        maxLines: null,
-                        decoration: const InputDecoration(
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black45),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black45),
-                          ),
-                        ),
-                        initialValue: content,
-                        onChanged: (value) {},
-                        onSaved: (value) {},
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 13),
               SizedBox(
                 width: 343,
                 height: 60,

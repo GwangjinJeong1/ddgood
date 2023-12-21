@@ -40,6 +40,7 @@ class _ConvertPageState extends State<ConvertPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.neutral,
       appBar: AppBar(
         backgroundColor: AppColor.secondary,
         title: const Text('일기쓰기', style: hm21),
@@ -64,11 +65,9 @@ class _ConvertPageState extends State<ConvertPage> {
           child: Column(
             children: <Widget>[
               const SizedBox(height: 118),
-              Text(
-                isTextConverted ? '변환이\n완료되었어요' : '텍스트로\n변환 중이에요',
-                textAlign: TextAlign.center, // 텍스트 중앙 정렬
-                style: hm21.copyWith(color: AppColor.text)
-              ),
+              Text(isTextConverted ? '변환이\n완료되었어요' : '텍스트로\n변환 중이에요',
+                  textAlign: TextAlign.center, // 텍스트 중앙 정렬
+                  style: hm21.copyWith(color: AppColor.text)),
               const SizedBox(height: 59.5),
               GestureDetector(
                 onTap: () {
