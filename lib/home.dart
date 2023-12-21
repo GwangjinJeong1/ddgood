@@ -1,34 +1,39 @@
+import 'package:ddgood/utils/color_scheme.dart';
+import 'package:ddgood/utils/text_theme.dart';
 import 'package:flutter/material.dart';
 
-import '../home.dart';
+import 'drawer/calendar.dart';
+import 'drawer/wordcloud.dart';
+import 'talk.dart';
 
-
-class WordCloudPage extends StatefulWidget {
-  const WordCloudPage({
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({
     super.key,
   });
 
   @override
-  State<WordCloudPage> createState() => _WordCloudPageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _WordCloudPageState extends State<WordCloudPage> {
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.neutral,
       appBar: AppBar(
-        title: const Text('WordCloud Page'),
-        automaticallyImplyLeading: false,
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
-              icon: const Icon(Icons.menu),
+              icon: const Icon(Icons.menu, color: AppColor.neutral,),
               onPressed: () {
                 Scaffold.of(context).openDrawer();
               },
             );
           },
         ),
+        backgroundColor: AppColor.secondary,
+        title: Text('일기쓰기', style: hm21.copyWith(color: AppColor.neutral)),
+        automaticallyImplyLeading: false,
       ),
       drawer: Drawer(
         width: 243,
@@ -117,15 +122,22 @@ class _WordCloudPageState extends State<WordCloudPage> {
                 thickness: 0.4,
                 color: Color.fromRGBO(149, 149, 149, 1),
               ),
-              const Row(
+              Row(
                 children: [
-                  SizedBox(width: 9),
-                  Text(
-                    '일기 기록',
-                    style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black),
+                  const SizedBox(width: 9),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const CalendarPage()),
+                      );
+                    },
+                    child: const Text('일기 기록',
+                        style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black)),
                   ),
                 ],
               ),
@@ -164,25 +176,41 @@ class _WordCloudPageState extends State<WordCloudPage> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(26),
+      body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Row(
-              children: [
-                const Text(
-                  '12월 2주',
-                  style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black),
-                ),
-              ],
+            const Text(
+              '오늘 하루는 어땠나요?',
+              style: hs21,
             ),
             SizedBox(
                 width: 207,
                 height: 207,
                 child: Image.asset("assets/images/home_image.png")),
+            SizedBox(
+              width: 275,
+              height: 60,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const TalkPage()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(0)),
+                    backgroundColor: const Color.fromRGBO(217, 217, 217, 1)),
+                child: const Text(
+                  '대화 시작하기',
+                  style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black),
+                ),
+              ),
+            ),
           ],
         ),
       ),
