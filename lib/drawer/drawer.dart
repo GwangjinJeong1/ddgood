@@ -23,9 +23,17 @@ class _MyDrawerState extends State<MyDrawer> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             const SizedBox(height: 50),
-            const Row(
+            Row(
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: [Spacer(), Icon(Icons.close, size: 32, color: AppColor.neutral)],
+              children: [
+                const Spacer(),
+                InkWell(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Icon(Icons.close,
+                        size: 32, color: AppColor.neutral))
+              ],
             ),
             const SizedBox(height: 13),
             Row(
@@ -37,26 +45,21 @@ class _MyDrawerState extends State<MyDrawer> {
                   backgroundColor: Color.fromRGBO(149, 149, 149, 1),
                 ),
                 const SizedBox(width: 8),
-                Text(
-                  '사용자',
-                  style: hs21.copyWith(fontSize: 24, color: AppColor.neutral)
-                ),
+                Text('사용자',
+                    style:
+                        hs21.copyWith(fontSize: 24, color: AppColor.neutral)),
                 const Spacer(),
                 const Icon(Icons.edit_outlined, color: AppColor.neutral)
               ],
             ),
             const SizedBox(height: 9),
-            const Divider(
-              thickness: 0.4,
-              height: 30,
-              color: AppColor.neutral
-            ),
+            const Divider(thickness: 0.4, height: 30, color: AppColor.neutral),
             Row(
               children: [
                 const SizedBox(width: 9),
                 GestureDetector(
                   onTap: () {
-                    Navigator.popUntil(context, ModalRoute.withName('/'));
+                    Navigator.pushReplacementNamed(context, '/');
                   },
                   child: Text(
                     '일기 쓰기',
@@ -65,11 +68,7 @@ class _MyDrawerState extends State<MyDrawer> {
                 ),
               ],
             ),
-            const Divider(
-              thickness: 0.4,
-              height: 30,
-              color: AppColor.neutral
-            ),
+            const Divider(thickness: 0.4, height: 30, color: AppColor.neutral),
             Row(
               children: [
                 const SizedBox(width: 9),
@@ -84,11 +83,7 @@ class _MyDrawerState extends State<MyDrawer> {
                 ),
               ],
             ),
-            const Divider(
-              thickness: 0.4,
-              height: 30,
-              color: AppColor.neutral
-            ),
+            const Divider(thickness: 0.4, height: 30, color: AppColor.neutral),
             Row(
               children: [
                 const SizedBox(width: 9),
@@ -101,11 +96,7 @@ class _MyDrawerState extends State<MyDrawer> {
                 ),
               ],
             ),
-            const Divider(
-              thickness: 0.4,
-              height: 30,
-              color: AppColor.neutral
-            ),
+            const Divider(thickness: 0.4, height: 30, color: AppColor.neutral),
             const Spacer(),
             Row(
               children: [

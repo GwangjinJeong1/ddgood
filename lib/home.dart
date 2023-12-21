@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 84),
             Text(
               '오늘 하루는 어땠나요?',
-              style: Theme.of(context).textTheme.headlineMedium,
+              style: hs21.copyWith(color: AppColor.text)
             ),
             const SizedBox(height: 74.5),
             SizedBox(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../utils/color_scheme.dart';
+import '../utils/text_theme.dart';
 import 'drawer.dart';
 
 class WordCloudPage extends StatefulWidget {
@@ -16,8 +18,10 @@ class _WordCloudPageState extends State<WordCloudPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('WordCloud Page'),
+        backgroundColor: AppColor.secondary,
+        title: const Text('워드클라우드', style: hm21),
         automaticallyImplyLeading: false,
+        iconTheme: const IconThemeData(color: AppColor.neutral),
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(

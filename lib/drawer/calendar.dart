@@ -45,7 +45,7 @@ class _CalendarPageState extends State<CalendarPage> {
             RichText(
                 text: TextSpan(
                     text: '이번 달 ',
-                    style: bm17.copyWith(color: AppColor.text),
+                    style: bm17,
                     children: [
                   TextSpan(
                       text: '$countDiary',
@@ -121,7 +121,7 @@ class _MonthCalendarState extends State<MonthCalendar> {
                 },
                 icon: const Icon(Icons.keyboard_arrow_left_rounded),
               ),
-              Text(month, style: hb24),
+              Text(month, style: hb24.copyWith(color: AppColor.text)),
               IconButton(
                 onPressed: () {
                   setState(() {
