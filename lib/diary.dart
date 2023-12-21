@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'drawer/calendar.dart';
 import 'completion.dart';
+import 'drawer/drawer.dart';
 
 class DiaryPage extends StatefulWidget {
   const DiaryPage({
@@ -20,6 +21,7 @@ class _DiaryPageState extends State<DiaryPage> {
         title: const Text('Diary Page'),
         automaticallyImplyLeading: false,
       ),
+      drawer: const MyDrawer(),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(25),
@@ -40,13 +42,13 @@ class _DiaryPageState extends State<DiaryPage> {
                       // 아이콘을 눌렀을 때 이동할 페이지로 이동
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => CalendarPage()),
+                        MaterialPageRoute(builder: (context) => const CalendarPage()),
                       );
                     },
-                    child: Container(
+                    child: const SizedBox(
                       width: 48.0, // 원하는 크기로 조절
                       height: 48.0, // 원하는 크기로 조절
-                      child: const Center(
+                      child: Center(
                         child: Icon(
                           Icons.calendar_today, // 달력 모양의 아이콘
                           color: Color.fromRGBO(95, 94, 93, 1), // 아이콘 색상 설정
