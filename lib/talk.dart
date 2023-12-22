@@ -50,12 +50,9 @@ class _TalkPageState extends State<TalkPage> {
             const SizedBox(height: 118),
             LottieBuilder.asset(
               'assets/images/talk.json',
-              animate: true, // 애니메이션을 재생하도록 설정
-              repeat: isPaused ? false : true, // 애니메이션을 반복하도록 설정 (선택 사항)
-              frameRate: FrameRate.max, // 최대 프레임 속도로 설정 (선택 사항)
-              onLoaded: (composition) {
-                // 로티 컴포지션 로딩 후 실행할 동작 설정 (선택 사항)
-              },
+              animate: true,
+              repeat: isPaused ? false : true,
+              frameRate: FrameRate.max,
             ),
             const SizedBox(height: 125.46),
             SizedBox(
@@ -88,8 +85,23 @@ class _TalkPageState extends State<TalkPage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => const ConvertPage()),
+                    PageRouteBuilder(
+                      transitionDuration: Duration(milliseconds: 500),
+                      pageBuilder: (context, animation, secondaryAnimation) {
+                        return ConvertPage(); // 전환할 페이지 위젯
+                      },
+                      transitionsBuilder: (
+                        BuildContext context,
+                        Animation<double> animation,
+                        Animation<double> secondaryAnimation,
+                        Widget child,
+                      ) {
+                        return FadeTransition(
+                          opacity: animation,
+                          child: child,
+                        );
+                      },
+                    ),
                   );
                 },
                 style: ElevatedButton.styleFrom(

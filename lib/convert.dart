@@ -32,7 +32,23 @@ class _ConvertPageState extends State<ConvertPage> {
     Future.delayed(const Duration(seconds: 4), () {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const CompletionPage()),
+        PageRouteBuilder(
+          transitionDuration: Duration(milliseconds: 500),
+          pageBuilder: (context, animation, secondaryAnimation) {
+            return CompletionPage(); // 전환할 페이지 위젯
+          },
+          transitionsBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+            Widget child,
+          ) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+        ),
       );
     });
   }
@@ -66,7 +82,7 @@ class _ConvertPageState extends State<ConvertPage> {
             children: <Widget>[
               const SizedBox(height: 118),
               Text(isTextConverted ? '변환이\n완료되었어요' : '텍스트로\n변환 중이에요',
-                  textAlign: TextAlign.center, // 텍스트 중앙 정렬
+                  textAlign: TextAlign.center,
                   style: hm21.copyWith(color: AppColor.text)),
               const SizedBox(height: 59.5),
               GestureDetector(

@@ -1,3 +1,4 @@
+import 'package:ddgood/splash.dart';
 import 'package:flutter/material.dart';
 
 import 'drawer/calendar.dart';
@@ -12,10 +13,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'ddgood',
-      initialRoute: '/',
+      initialRoute: '/splash',
       routes: {
         // '/login': (BuildContext context) => const LoginPage(),
         '/': (BuildContext context) => const HomePage(),
+        '/splash': (BuildContext context) => const SplashPage(),
         '/wordcloud': (BuildContext context) => const WordCloudPage(),
         '/calendar': (BuildContext context) => const CalendarPage(),
       },
