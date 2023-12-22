@@ -66,7 +66,8 @@ class _CalendarModalState extends State<CalendarModal> {
                     .map((item) => DropdownMenuItem(
                         alignment: Alignment.center,
                         value: item,
-                        child: Text('$item', style: _selectedYear == item ? bs15 : br15)))
+                        child: Text('$item',
+                            style: _selectedYear == item ? bs15 : br15)))
                     .toList(),
                 value: _selectedYear,
                 onChanged: (value) {
@@ -75,6 +76,7 @@ class _CalendarModalState extends State<CalendarModal> {
                     _today = DateTime(_selectedYear, _today.month);
                   });
                 },
+                underline: const SizedBox(),
                 buttonStyleData: ButtonStyleData(
                     width: 93,
                     height: 32,
@@ -99,7 +101,8 @@ class _CalendarModalState extends State<CalendarModal> {
                     .map((item) => DropdownMenuItem(
                         alignment: Alignment.center,
                         value: item,
-                        child: Text('$item', style: _selectedMonth == item ? bs15 : br15)))
+                        child: Text('$item',
+                            style: _selectedMonth == item ? bs15 : br15)))
                     .toList(),
                 value: _selectedMonth,
                 onChanged: (value) {
@@ -108,6 +111,7 @@ class _CalendarModalState extends State<CalendarModal> {
                     _today = DateTime(_today.year, _selectedMonth);
                   });
                 },
+                underline: const SizedBox(),
                 buttonStyleData: ButtonStyleData(
                     width: 69,
                     height: 32,

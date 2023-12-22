@@ -117,4 +117,3 @@ Widget getHeaderWidget(Calendar calendarView) {
       return Container();
   }
 }
-

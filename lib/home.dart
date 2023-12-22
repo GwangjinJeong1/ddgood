@@ -40,10 +40,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: <Widget>[
             const SizedBox(height: 84),
-            Text(
-              '오늘 하루는 어땠나요?',
-              style: hs21.copyWith(color: AppColor.text)
-            ),
+            Text('오늘 하루는 어땠나요?', style: hs21.copyWith(color: AppColor.text)),
             const SizedBox(height: 74.5),
             SizedBox(
                 width: 313,
@@ -64,10 +61,8 @@ class _HomePageState extends State<HomePage> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16)),
                     backgroundColor: AppColor.secondary),
-                child: Text(
-                  '일기 쓰러가기',
-                  style: bs17.copyWith(color: AppColor.neutral)
-                ),
+                child: Text('일기 쓰러가기',
+                    style: bs17.copyWith(color: AppColor.neutral)),
               ),
             ),
           ],
