@@ -7,8 +7,7 @@ import '../utils/text_theme.dart';
 import 'modalPage.dart';
 
 class MonthPage extends StatefulWidget {
-  const MonthPage(
-      {super.key, required this.today});
+  const MonthPage({super.key, required this.today});
 
   final DateTime today;
 
@@ -34,7 +33,7 @@ class _MonthPageState extends State<MonthPage> {
       child: Column(
         children: [
           Text(
-            '${_today.year}',
+            '${_today.year}년',
             style: bs15.copyWith(color: AppColor.text),
           ),
           Row(
@@ -119,21 +118,21 @@ class WeekPage extends StatelessWidget {
             '12월',
             style: bs15.copyWith(color: AppColor.text),
           ),
-          const SizedBox(height: 2),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Icon(Icons.navigate_before, size: 24),
-              const SizedBox(width: 28),
+              const SizedBox(width: 20),
               Text(
                 '4주',
                 style: hb24.copyWith(color: AppColor.text),
               ),
-              const SizedBox(width: 28),
+              const SizedBox(width: 20),
               const Icon(Icons.navigate_next, size: 24),
             ],
           ),
-          const SizedBox(height: 29),
+          const SizedBox(height: 38),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -215,7 +214,7 @@ class _DayPageState extends State<DayPage> {
       child: Column(
         children: [
           Text(
-            '${_today.month}',
+            '${_today.month}월',
             style: bs15.copyWith(color: AppColor.text),
           ),
           Row(
